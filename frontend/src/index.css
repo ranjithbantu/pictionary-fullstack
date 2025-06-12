@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --btn: #3b82f6;
+  --btn-hover: #2563eb;
+  --accent: #a855f7;
+}
+
+.font-fredoka { font-family: 'Fredoka', sans-serif; }
+
+/* shake animation */
+@layer utilities {
+  .animate-shake {
+    animation: shake 0.3s ease-in-out;
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+}

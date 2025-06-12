@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/tooling/cli/schema.json",
+  "build": {
+    "beforeDevCommand": "pnpm --filter frontend dev",
+    "frontendDist": "dist"
+  },
+  "identifier": "com.pictionary.dev",
+  "productName": "Pictionary",
+  "version": "0.1.0",
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "resources": ["dist/**/*"]
+  },
+  "app": {
+    "security": {
+      "assetProtocol": {
+        "enable": true
+      }
+    }
+  }
+} 
