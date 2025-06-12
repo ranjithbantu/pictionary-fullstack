@@ -26,11 +26,16 @@ A small drawing game that runs on the web **and** as a native desktop app.
 ## Quick start – Web + FastAPI
 
 ```bash
+git clone https://github.com/ranjithbantu/pictionary-fullstack.git
+cd pictionary-fullstack
 pnpm install               # workspace bootstrap
 cp .env.example .env       # no secrets required
-pnpm dev                   # http://localhost:5173  (frontend)
-                           # http://localhost:8000  (FastAPI)
+pip install -r backend/requirements.txt   # fastapi, uvicorn
+pnpm dev                   # see below for ports
 ```
+
+• Front-end  – http://localhost:5173  
+• API        – http://localhost:8000/api/word
 
 ---
 
@@ -59,11 +64,7 @@ pnpm build:desktop
 
 ## Screenshots / GIF
 
-> Coming soon – replace `docs/demo.gif` with a screencast.
->
-> ```markdown
-> ![Demo](docs/demo.gif)
-> ```
+> _GIF incoming  📸 (shows web + desktop in one clip)_
 
 ---
 
@@ -82,16 +83,6 @@ pnpm build:desktop
 
 ---
 
-## Future work
-
-* Real-time networking (WebSockets) for multiplayer drawing
-* Cross-device room codes & lobby screen
-* Custom game icons + high-res app icon
-* Auto-update pipeline via GitHub Releases
-* CI/CD (lint, test, build, codesign)
-
----
-
 ## Manual desktop build if CI fails
 
 ```bash
@@ -103,5 +94,7 @@ rm -rf src-tauri/dist && \
 ```
 
 ---
+
+MIT License
 
 Made with ❤️ and caffeine. Pull requests welcome! 🌟 
