@@ -23,57 +23,40 @@ A small drawing game that runs on the web **and** as a native desktop app.
 
 ---
 
-## Quick start – Web + FastAPI
+## Zero-to-Running (copy–paste)
 
 ```bash
-git clone https://github.com/ranjithbantu/pictionary-fullstack.git
-cd pictionary-fullstack
-pnpm install               # workspace bootstrap
-cp .env.example .env       # no secrets required
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r backend/requirements.txt   # fastapi, uvicorn
-pnpm dev:web               # web frontend + API
+# 1. Clone
+ git clone https://github.com/ranjithbantu/pictionary-fullstack.git
+ cd pictionary-fullstack
+
+# 2. Tool-chain bootstrap (safe to re-run)
+## Node + pnpm (Corepack)
+ corepack enable && corepack prepare pnpm@latest --activate
+
+## Python venv + FastAPI deps
+ python3 -m venv .venv && source .venv/bin/activate
+ pip install -r backend/requirements.txt
+
+## Rust + Tauri CLI (desktop build)
+ curl https://sh.rustup.rs -sSf | sh -s -- -y
+ source "$HOME/.cargo/env"
+ cargo install tauri-cli --locked --force
+ # macOS only – linker tool-chain
+ [[ "$OSTYPE" == "darwin"* ]] && (xcode-select -p >/dev/null 2>&1 || xcode-select --install)
+
+# 3. Project JS deps
+ pnpm install
+
+# 4. RUN!
+ ## Web + API ONLY
+ pnpm dev:web         # http://localhost:5173  +  http://localhost:8000/api/word
+
+ ## Desktop (includes API) – recommended for demo
+ pnpm dev:desktop     # Opens Pictionary.app and also serves web
 ```
 
-• Front-end  – http://localhost:5173  
-• API        – http://localhost:8000/api/word
-
----
-
-## One-time Rust Setup (macOS / Windows / Linux)
-
-```bash
-# Install Rust + cargo in one line
-curl https://sh.rustup.rs -sSf | sh -s -- -y
-source "$HOME/.cargo/env"
-
-# Install / upgrade the Tauri CLI
-cargo install tauri-cli --locked --force
-
-# macOS only – ensure Xcode Command Line Tools are present (required by the linker)
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  xcode-select -p >/dev/null 2>&1 || xcode-select --install
-fi
-```
-
-Once the commands above succeed, verify the tool-chain:
-
-```bash
-pnpm tauri info   # shows versions & system checks
-```
-
-If everything is green, continue below.
-
----
-
-## Quick start – Desktop
-
-```bash
-pnpm dev:desktop           # FastAPI + Tauri dev (opens window)
-
-# Production bundle (.app / .dmg under src-tauri/target/release/bundle)
-pnpm build:desktop
-```
+`pnpm dev:desktop` is one command: backend, frontend build+reload, and the desktop window all start together. No Ctrl-C juggling.
 
 ---
 
@@ -88,11 +71,6 @@ pnpm build:desktop
 | `pnpm preview` | Serves the production build locally |
 | `pnpm build:desktop` | Builds the React app then packages the desktop app |
 
----
-
-## Screenshots / GIF
-
-> _GIF incoming  📸 (shows web + desktop in one clip)_
 
 ---
 
