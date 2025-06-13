@@ -4,10 +4,10 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -k \"pnpm dev:api\" \"pnpm dev:frontend\"",
+    "dev:web": "concurrently -k \"pnpm dev:api\" \"pnpm --filter frontend dev -- --port 5173\"",
     "dev:api": "uvicorn backend.main:app --reload --port 8000",
-    "dev:frontend": "pnpm --filter frontend dev -- --port 5173",
-    "dev:desktop": "pnpm tauri dev",
+    "dev:desktop": "concurrently -k \"pnpm dev:api\" \"pnpm tauri dev\"",
+    "dev": "pnpm dev:web",
     "build": "pnpm --filter frontend build",
     "build:desktop": "pnpm --filter frontend build && pnpm tauri build",
     "preview": "pnpm --filter frontend preview",

@@ -30,8 +30,9 @@ git clone https://github.com/ranjithbantu/pictionary-fullstack.git
 cd pictionary-fullstack
 pnpm install               # workspace bootstrap
 cp .env.example .env       # no secrets required
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r backend/requirements.txt   # fastapi, uvicorn
-pnpm dev                   # see below for ports
+pnpm dev:web               # web frontend + API
 ```
 
 • Front-end  – http://localhost:5173  
@@ -68,7 +69,7 @@ If everything is green, continue below.
 ## Quick start – Desktop
 
 ```bash
-pnpm dev:desktop           # hot-reload desktop window
+pnpm dev:desktop           # FastAPI + Tauri dev (opens window)
 
 # Production bundle (.app / .dmg under src-tauri/target/release/bundle)
 pnpm build:desktop
@@ -80,8 +81,9 @@ pnpm build:desktop
 
 | Script | What it does |
 |--------|--------------|
-| `pnpm dev` | Runs FastAPI + Vite dev server concurrently |
-| `pnpm dev:desktop` | Starts the Tauri dev window with live reload |
+| `pnpm dev:web` | Runs FastAPI + Vite dev server (web only) |
+| `pnpm dev:desktop` | Runs FastAPI + Tauri dev (opens desktop window) |
+| `pnpm dev` | Alias to `dev:web` |
 | `pnpm build` | Builds the production frontend (Vite) |
 | `pnpm preview` | Serves the production build locally |
 | `pnpm build:desktop` | Builds the React app then packages the desktop app |
