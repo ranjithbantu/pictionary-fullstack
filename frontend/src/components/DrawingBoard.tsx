@@ -34,8 +34,10 @@ const DrawingBoard = forwardRef<DrawingBoardHandle, DrawingBoardProps>(({ classN
     const ctx = canvas.getContext("2d")!;
     const resize = () => {
       const { width, height } = canvas.getBoundingClientRect();
-      canvas.width = width;
-      canvas.height = height;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
       ctx.lineCap = "round";
       ctx.lineWidth = 4;
       ctx.strokeStyle = "#000";
