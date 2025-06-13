@@ -39,6 +39,32 @@ pnpm dev                   # see below for ports
 
 ---
 
+## One-time Rust Setup (macOS / Windows / Linux)
+
+```bash
+# Install Rust + cargo in one line
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+source "$HOME/.cargo/env"
+
+# Install / upgrade the Tauri CLI
+cargo install tauri-cli --locked --force
+
+# macOS only – ensure Xcode Command Line Tools are present (required by the linker)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  xcode-select -p >/dev/null 2>&1 || xcode-select --install
+fi
+```
+
+Once the commands above succeed, verify the tool-chain:
+
+```bash
+pnpm tauri info   # shows versions & system checks
+```
+
+If everything is green, continue below.
+
+---
+
 ## Quick start – Desktop
 
 ```bash
